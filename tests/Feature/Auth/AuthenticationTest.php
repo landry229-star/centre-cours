@@ -5,7 +5,10 @@ use App\Models\User;
 test('login screen can be rendered', function () {
     $response = $this->get('/login');
 
-    $response->assertStatus(200);
+    $response->assertOk()
+        ->assertSee(config('centre.name'))
+        ->assertSee('Adresse e-mail')
+        ->assertDontSee('Laravel');
 });
 
 test('users can authenticate using the login screen', function () {
